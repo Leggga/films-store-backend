@@ -1,0 +1,30 @@
+{
+  "name": "films-store-backend",
+  "version": "1.0.0",
+  "description": "Test task",
+  "scripts": {
+    "build": "webpack",
+    "start:dev": "webpack --config config/webpack.dev.js",
+    "run:dev": "nodemon build/index.js"
+  },
+  "keywords": [],
+  "author": "Ivanytksiy Oleh",
+  "license": "ISC",
+  "dependencies": {
+    "@types/express": "^4.17.8",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.6",
+    "ts-loader": "^8.0.7",
+    "typescript": "^4.0.5",
+    "webpack": "^5.3.1",
+    "webpack-cli": "^4.1.0",
+    "webpack-hook-plugin": "^1.0.7",
+    "webpack-merge": "^5.2.0",
+    "webpack-node-externals": "^2.5.2"
+  }
+}
