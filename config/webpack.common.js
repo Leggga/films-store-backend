@@ -1,7 +1,6 @@
 const dotenv = require('dotenv').config()
-const webpack = require("webpack")
-const paths = require("./paths");
-const nodeExternals = require('webpack-node-externals')
+const webpack = require('webpack')
+const paths = require('./paths')
 
 module.exports.common = {
   entry: paths.src,
@@ -13,13 +12,15 @@ module.exports.common = {
   },
   resolve: {
     extensions: ['.ts', '.js'],
+    alias: {
+      src: paths.src,
+    }
   },
   plugins: [
     new webpack.DefinePlugin({
       'process.env': JSON.stringify(dotenv.parsed)
     })
   ],
-  externals: [nodeExternals()],
   module: {
     rules: [
       {
