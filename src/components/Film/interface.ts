@@ -6,4 +6,8 @@ export interface IFilmService {
   findOneById(id: string): Promise<IFilmDocument>
 
   insert(body: IFilm): Promise<IFilmDocument>
+
+  insertAll(films: IFilm[], resetDb: boolean) : Promise<void>
+
+  removeById(id: string): void
 }

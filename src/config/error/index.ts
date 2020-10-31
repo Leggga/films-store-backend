@@ -1,5 +1,6 @@
-import {Application, NextFunction, Request, Response} from 'express'
+import {Application, NextFunction, Request, Response, Send} from 'express'
 import * as http from 'http'
+import {ResponseMessage} from 'src/types'
 
 export class ErrorHandler extends Error {
   status: number
@@ -36,9 +37,9 @@ export interface CustomResponse extends Response {
 
 export const sendErrorModule = (req: Request, res: CustomResponse, next: NextFunction): void => {
   res.sendError = (error: ErrorHandler): void => {
-    const {status , message} = error
+    const {status, message} = error
     res.status(status)
-    res.json({message})
+    res.json({message} as ResponseMessage)
   }
 
   next()
