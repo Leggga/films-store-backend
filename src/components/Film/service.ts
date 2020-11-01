@@ -1,9 +1,11 @@
-import {IFilmService} from 'src/components/Film/interface'
+import * as Joi from '@hapi/joi'
+import {ErrorHandler} from 'src/config/error'
+//db
 import {IFilm, IFilmDocument} from 'src/database/films/films.types'
 import {FilmsModel} from 'src/database/films/films.model'
-import * as Joi from '@hapi/joi'
+
+import {IFilmService} from 'src/components/Film/interface'
 import FilmValidation from 'src/components/Film/validation'
-import {ErrorHandler} from 'src/config/error'
 
 const FilmService: IFilmService = {
 
@@ -50,6 +52,11 @@ const FilmService: IFilmService = {
 
   async removeById(_id: string) {
     return FilmsModel.deleteOne({_id})
+      .then(query => {
+        if (!query.deletedCount) {
+          throw new Error()
+        }
+      })
       .catch(() => {
         throw new ErrorHandler(404, `Can't delete film with id ${_id}`)
       })

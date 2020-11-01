@@ -6,7 +6,7 @@ import {sendErrorModule} from 'src/config/error'
 export const applyMiddleware = (app: Application) => {
   app.use(bodyParser.json({
     limit: '50mb',
-    verify(req: any, res, buf, encoding) {
+    verify(req: any, res, buf) {
       req.rawBody = buf
     }
   }))

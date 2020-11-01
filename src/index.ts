@@ -10,18 +10,22 @@ const upload = multer({dest: 'uploads/'})
 
 const {PORT} = process.env
 const app = express()
+const apiRoute = express.Router();
 
 applyMiddleware(app)
 connectToDB()
 
-app.get('/films', getAllFilms)
-app.get('/films/:id', getFilm)
-app.post('/films', createFilm)
-app.delete('/films/:id', deleteFilm)
-app.post('/upload', upload.single('file'), uploadFile)
+apiRoute.get('/films', getAllFilms)
+apiRoute.get('/films/:id', getFilm)
+apiRoute.post('/films', createFilm)
+apiRoute.delete('/films/:id', deleteFilm)
+apiRoute.post('/upload', upload.single('file'), uploadFile)
 
+app.use('/api', apiRoute)
 initErrorHandler(app)
 
 app.listen(PORT, () => {
   console.log('server started at http://localhost:' + PORT)
 })
+
+//TODO refactor code, change imports, move types to common file, setup options for upload, add types for JOI
