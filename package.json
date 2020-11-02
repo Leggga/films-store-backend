@@ -4,7 +4,7 @@
   "description": "Test task",
   "scripts": {
     "build": "webpack",
-    "start:dev": "webpack --config config/webpack.dev.js",
+    "start:dev": "webpack --config webpack/webpack.dev.js",
     "run:dev": "nodemon build/index.js"
   },
   "keywords": [],

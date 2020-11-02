@@ -1,1 +1,0 @@
-import {IFilm, IFilmModel} from './films.types'

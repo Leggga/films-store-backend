@@ -34,8 +34,6 @@ const FilmService: IFilmService = {
   },
 
   async insertAll(films: IFilm[], resetDb): Promise<void> {
-
-    //TODO check if array empty
     for (const film of films) {
       const validation: Joi.ValidationResult = FilmValidation.createFilm(film)
 

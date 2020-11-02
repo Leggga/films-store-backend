@@ -1,5 +1,5 @@
-import {Application, NextFunction, Request, Response, Send} from 'express'
 import * as http from 'http'
+import {Application, NextFunction, Request, Response} from 'express'
 import {ResponseMessage} from 'src/types'
 
 export class ErrorHandler extends Error {
@@ -22,7 +22,7 @@ export const initErrorHandler = (app: Application) => {
       error = new ErrorHandler(error)
     }
 
-    if (error.name === "ErrorHandler") {
+    if (error.name === 'ErrorHandler') {
       res.sendError(error)
     } else {
       error = new ErrorHandler(500, error.message)
