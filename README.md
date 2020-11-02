@@ -26,6 +26,26 @@ API corresponds REST API
   - DELETE /api/films/:id - remove film by id
   - POST /api/upload - import text file to DB
   
+POST /api/upload provides an easy way to import file. This route accepts only text files (text/plain).
+Server read a `file` field of form-data. Conditions for successfully parsing of file:<br />
+
+1. File must have at least one object<br />
+2. All fields of the object except `id` is required <br />
+3. Keys of the object not case-sensitive<br />
+4. One pair key/value should take one line <br/>
+5. After each object Must be one or more empty line<br/>
+6. Space in the key will be replaced by an dash `_`
+
+Example: `sample_movies.txt`
+
+    Title: Raiders of the Lost Ark
+    Release Year: 1981
+    Format: DVD
+    Stars: Harrison Ford, Karen Allen
+    
+    Title: ""
+    ...
+  
 ### General shape of Film object : 
     {
         id: string
