@@ -10,7 +10,6 @@ export function readTextFile<Model>(filePath: string, mapper: Mapper<Model>): Pr
     const arr: Model[] = []
 
     let obj: Model = {} as Model
-    let isFinishedObject = false
 
     reader.on('line', (line) => {
       if (line) {
@@ -30,16 +29,13 @@ export function readTextFile<Model>(filePath: string, mapper: Mapper<Model>): Pr
           obj = {} as Model
         }
       }
-
-      isFinishedObject = !line
     })
 
 
     reader.on('close', () => {
-      if (!isFinishedObject) {
+      if (Object.keys(obj).length) {
         arr.push(obj)
       }
-
       return resolve(arr)
     })
   }))
