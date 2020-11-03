@@ -3,9 +3,9 @@ import * as Joi from '@hapi/joi'
 
 const filmJoiSchema = Joi.object().keys({
   title: Joi.string().trim(),
-  release_year: Joi.number().integer().min(1900).max(new Date().getFullYear()),
+  release_year: Joi.number().integer().min(1850).max(new Date().getFullYear()),
   format: Joi.string().valid(...Object.values(filmFormats)),
-  stars: Joi.alternatives().try(Joi.array().min(1).items(Joi.string().trim().required()), Joi.string())
+  stars: Joi.alternatives().try(Joi.array().min(1).items(Joi.string().trim().required()).unique(), Joi.string())
 }).options({presence: 'required'})
 
 const FilmValidation = {

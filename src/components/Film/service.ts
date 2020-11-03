@@ -34,11 +34,15 @@ const FilmService: IFilmService = {
   },
 
   async insertAll(films: IFilm[], resetDb): Promise<void> {
-    for (const film of films) {
-      const validation: Joi.ValidationResult = FilmValidation.createFilm(film)
+    if (!films.length) {
+      throw new ErrorHandler(500, 'File must contain at least 1 valid Film')
+    } else {
+      for (const film of films) {
+        const validation: Joi.ValidationResult = FilmValidation.createFilm(film)
 
-      if (validation.error) {
-        throw new Error(validation.error.message)
+        if (validation.error) {
+          throw new Error(validation.error.message)
+        }
       }
     }
 
